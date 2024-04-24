@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>临时备忘录</title>
+    <link rel="stylesheet" type="text/css" href="./cherry-markdown.min.css">
+    <style>
+        html {
+            height: 100%;
+        }
+        body {
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+        }
+        #content {
+            width: 100%;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="content"></div>
+    <script src="./cherry-markdown.min.js"></script>
+    <script>
+        let memo = localStorage.getItem("memo")
+        new Cherry({
+            id: 'content',
+            value: memo,
+            callback: {
+                afterChange: function(md, html) {
+                    localStorage.setItem("memo", md)
+                }
+            }
+        });
+    </script>
+</body>
+</html>
